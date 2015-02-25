@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.github.bbarm.markdizer.sample;
+package com.github.bbarm.markdizer;
 
 import android.content.Context;
 import android.text.Html;
@@ -71,8 +71,12 @@ public class Markdizer {
                 "<b>$1</b>"
         ));
         patterns.add(new Pair<Pattern, String>(
-                Pattern.compile("`[_](.+?)[_]`"),
+                Pattern.compile("`[/](.+?)[/]`"),
                 "<i>$1</i>"
+        ));
+        patterns.add(new Pair<Pattern, String>(
+                Pattern.compile("`[_](.+?)[_]`"),
+                "<u>$1</u>"
         ));
         patterns.add(new Pair<Pattern, String>(
                 Pattern.compile("`([a-fA-F0-9]{3}|[a-fA-F0-9]{6})#(.+?)#`"),

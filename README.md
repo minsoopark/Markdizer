@@ -2,15 +2,17 @@
 Span your texts of TextViews easily.
 
 # Usage
-You can span your texts with ``` ` ```, `*`, `_`, and `#`.
+You can span your texts with ``` ` ```, `*`, `/`, `_`, and `#`.
 - Bold : ``` `*blah blah*` ```
-- Italic : ``` `_blah blah_` ```
+- Italic : ``` `/blah blah/` ```
+- Underline : ``` `_blah blah_` ```
 - Font Color : ``` `ffffff#blah blah#` ```
 - Mixed : ``` `e74c3c#This is `*bold*` text#` ```
 
 Then the Markdizer converts your texts like:
 - `<b>blah blah</b>`
 - `<i>blah blah</i>`
+- `<u>blah blah</u>`
 - `<font color="#ffffff">blah blah</font>`
 
 # Example

@@ -4,9 +4,10 @@
     <string name="app_name">Markdizer</string>
     <string name="hello_world">Hello world Normal!</string>
     <string name="hello_world_bold">`*Hello world Bold!*`</string>
-    <string name="hello_world_italic">`_Hello world Italic!_`</string>
+    <string name="hello_world_italic">`/Hello world Italic!/`</string>
+    <string name="hello_world_underlined">`_Hello world Underlined!_`</string>
     <string name="hello_world_red">`e74c3c#Hello world Red!#`</string>
-    <string name="hello_world_mixed">`02baff#Hello world `*Mixed*`!#`</string>
+    <string name="hello_world_mixed">`_Hi_` `/everyone/`! `02baff#Hello world `*Mixed*`!#`</string>
     <string name="action_settings">Settings</string>
 
 </resources>
