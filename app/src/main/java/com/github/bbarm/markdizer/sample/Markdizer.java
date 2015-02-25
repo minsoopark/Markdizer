@@ -26,10 +26,16 @@ package com.github.bbarm.markdizer.sample;
 import android.content.Context;
 import android.text.Html;
 import android.text.Spanned;
+import android.util.Pair;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Markdizer {
+
+    private static List<Pair<Pattern, String>> patterns = createPatterns();
 
     /**
      * Usage
@@ -44,17 +50,11 @@ public class Markdizer {
     public static Spanned markdize(CharSequence pattern) {
         String patternStr = pattern.toString();
 
-        if (patternStr.contains("`*") && patternStr.contains("*`")) {
-            patternStr = patternStr.replace("`*", "<b>").replace("*`", "</b>");
-        }
-
-        if (patternStr.contains("`_") && patternStr.contains("_`")) {
-            patternStr = patternStr.replace("`_", "<i>").replace("_`", "</i>");
-        }
-
-        Pattern regex = Pattern.compile("`([a-fA-F0-9]{3}|[a-fA-F0-9]{6})#(.+?)#`");
-        if (patternStr.matches(regex.toString())) {
-            patternStr = regex.matcher(patternStr).replaceAll("<font color=\"#$1\">$2</font>");
+        for (Pair<Pattern, String> pair : patterns) {
+            Matcher matcher = pair.first.matcher(patternStr);
+            if (matcher.find()) {
+                patternStr = matcher.replaceAll(pair.second);
+            }
         }
 
         return Html.fromHtml(patternStr);
@@ -62,5 +62,22 @@ public class Markdizer {
 
     public static Spanned markdize(Context context, int resId) {
         return markdize(context.getString(resId));
+    }
+
+    private static List<Pair<Pattern, String>> createPatterns() {
+        List<Pair<Pattern, String>> patterns = new ArrayList<Pair<Pattern, String>>();
+        patterns.add(new Pair<Pattern, String>(
+                Pattern.compile("`[*](.+?)[*]`"),
+                "<b>$1</b>"
+        ));
+        patterns.add(new Pair<Pattern, String>(
+                Pattern.compile("`[_](.+?)[_]`"),
+                "<i>$1</i>"
+        ));
+        patterns.add(new Pair<Pattern, String>(
+                Pattern.compile("`([a-fA-F0-9]{3}|[a-fA-F0-9]{6})#(.+?)#`"),
+                "<font color=\"#$1\">$2</font>"
+        ));
+        return patterns;
     }
 }
