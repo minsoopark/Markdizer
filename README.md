@@ -19,6 +19,7 @@ CharSequence target = "`*Hello World!*`";
 TextView tv = new TextView(context);
 tv.setText(Markdizer.markdize(target));
 ```
+![Screenshot](./img/screenshot.png)
 
 # License
 ```
